@@ -1,20 +1,63 @@
-﻿// lab_2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
+﻿#include "Train.h"
+#include <conio.h>
 #include <iostream>
+#include <windows.h>
+#include "functions.h"
+void menu();
 
 int main()
 {
-    std::cout << "Hello World!!!!!!\n";
+    Train* trains = nullptr;
+
+    int command = 0;
+    int count = 0;
+    while (1) {
+        system("cls");
+        menu();
+        cin >> command;
+        switch (command) {
+        case 1: {
+            system("cls");
+            Train train;
+            cin >> train;
+            trains = train.addTrain(trains, count, train);
+            cout << "Train added successfully" << endl;
+            system("pause");
+            break;
+        }
+        case 2: {
+            system("cls");
+            sortTrains(trains, count);
+            if (trains) {
+                for (int i = 0; i < count; i++)
+                    cout << trains[i];
+            }
+            else {
+                cout << "List of train is empty. Add new object in list." << endl;
+            }
+            system("pause");
+            break;
+        }
+        case 3: {
+            system("cls");
+            cout << "Enter a number of train:";
+            int number;
+            cin >> number;
+            findTrainByNumber(trains, count, number);
+            system("pause");
+            break;
+        }
+
+        }
+    }
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
+
+void menu() {
+    cout << "1.Add a new train:" << endl;
+    cout << "2.List of trains:" << endl;
+    cout << "3.Find a train by number:" << endl;
+    cout << "Enter command:";
+}
+
