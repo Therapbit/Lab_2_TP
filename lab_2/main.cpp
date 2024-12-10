@@ -54,6 +54,13 @@ int main()
             break;
         }
         case 4:
+        {
+            system("cls");
+            editTrain(trains, count);
+            system("pause");
+            break;
+        }
+        case 5: {
             system("cls");
             cout << "Enter the name of text file:";
             string filename;
@@ -75,17 +82,15 @@ int main()
             string text = buffer.str();
             inputFile.close();
 
-            
+
             const char* cText = text.c_str();
 
-            
+
             int sentenceCount = 0;
             char** sentences = splitIntoSentences(cText, sentenceCount);
 
-            if (targetWordCount != 0)
-                cout << "Нет предложений с таким количеством слов" << endl;
-            else
-                cout << "Предложения с количеством слов " << targetWordCount << ":" << endl;
+           
+            cout << "Предложения с количеством слов " << targetWordCount << ":" << endl;
             for (int i = 0; i < sentenceCount; ++i) {
                 if (countWord(sentences[i]) == targetWordCount) {
                     cout << sentences[i] << endl;
@@ -97,6 +102,7 @@ int main()
             system("pause");
             break;
         }
+        }
     }
 }
 
@@ -106,7 +112,9 @@ void menu() {
     cout << "1.Add a new train:" << endl;
     cout << "2.List of trains:" << endl;
     cout << "3.Find a train by number:" << endl;
-    cout << "4.Second part of task" << endl;
+    cout << "4.Edit object" << endl;
+    cout << "5.Second part of task" << endl;
+
     cout << "Enter command:";
 }
 
